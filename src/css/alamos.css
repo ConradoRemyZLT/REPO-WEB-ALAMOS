@@ -823,3 +823,7 @@ body.mopen .mov a{opacity:1;transform:none}
 .vhero.playing .yt-bg{opacity:1}
 .yt-bg iframe,.yt-bg .yt-frame{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border:0;max-width:none}
 .vhero.yt-fail .vhero-ui{display:none}
+/* pantalla de carga en el verde de la paleta de Álamos */
+#pre{background:var(--verde)}
+#pre .pbar{background:rgba(255,255,255,.3)}
+#pre .pbar i{background:#fff}
