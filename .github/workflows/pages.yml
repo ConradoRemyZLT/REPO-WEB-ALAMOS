@@ -28,6 +28,8 @@ jobs:
           cp html/ALAMOS-WEB-club.html       _site/club/index.html
           cp brochures/*.pdf                 _site/brochures/
           cp iconos/web/*                    _site/
+          mkdir -p _site/videos
+          cp videos/hero-alamos.mp4 videos/hero-alamos-m.mp4 _site/videos/
           cp html/robots.txt html/sitemap.xml _site/ 2>/dev/null || true
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v3

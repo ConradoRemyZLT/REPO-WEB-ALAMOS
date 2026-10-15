@@ -208,6 +208,10 @@ def main():
             print(f"ATENCIÓN: {salida} pesa {mb:.1f} MB (límite {LIMITE_MB} MB)")
     shutil.copytree(os.path.join(ROOT, "brochures"), os.path.join(site, "brochures"),
                     ignore=shutil.ignore_patterns("*.csv"))
+    # respaldo del header de la Home (si YouTube no se puede usar): MP4 propios servidos en /videos/
+    os.makedirs(os.path.join(site, "videos"), exist_ok=True)
+    for f in ("hero-alamos.mp4", "hero-alamos-m.mp4"):
+        shutil.copy(os.path.join(ROOT, "videos", f), os.path.join(site, "videos"))
     for f in os.listdir(os.path.join(ROOT, "iconos", "web")):
         shutil.copy(os.path.join(ROOT, "iconos", "web", f), site)
     for f in ("robots.txt", "sitemap.xml"):

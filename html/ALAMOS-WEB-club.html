@@ -845,6 +845,10 @@ body.mopen .mov a{opacity:1;transform:none}
 #pre{background:var(--verde)}
 #pre .pbar{background:rgba(255,255,255,.3)}
 #pre .pbar i{background:#fff}
+.vhero video.yt-mp4{opacity:0;transition:opacity 1s var(--ease-out)}
+.vhero.mp4 video.yt-mp4{opacity:1}
+.vhero.yt-fail .yt-bg{display:none}
+.vhero.yt-fail .vhero-ui{display:flex}
 
 </style>
 
@@ -1236,14 +1240,34 @@ body.mopen .mov a{opacity:1;transform:none}
     if (vertical) id = idM;
     var ratio = vertical ? 9 / 16 : 16 / 9, box = $('.yt-frame', hero), player = null, done = false, made = false;
     function ready() { if (!done) { done = true; PRE.done(); } }
-    function fail() { hero.classList.add('yt-fail'); ready(); }
+    // Respaldo: si YouTube no se puede usar (inserción deshabilitada, bloqueo de red, archivo local…),
+    // se reproduce el MP4 propio (720p) que se publica junto al sitio en /videos/.
+    var usingMp4 = false, mp4 = $('video.yt-mp4', hero);
+    function fail(why) {
+      if (usingMp4) return; usingMp4 = true;
+      if (why) try { console.warn('[Álamos] video de YouTube no disponible (' + why + '); se usa el MP4 propio'); } catch (e) { }
+      hero.classList.add('yt-fail');
+      var src = hero.getAttribute(vertical ? 'data-mp4-m' : 'data-mp4');
+      if (!mp4 || !src) { ready(); return; }
+      var tries = [src, '../' + src];           // _site/ publicado · html/ del repositorio
+      function load(i) {
+        if (i >= tries.length) { ready(); return; }
+        mp4.onerror = function () { load(i + 1); };
+        mp4.src = tries[i]; mp4.muted = true; mp4.load();
+        var pr = mp4.play(); if (pr && pr.catch) pr.catch(function () { });
+      }
+      mp4.addEventListener('canplaythrough', function () { hero.classList.add('playing', 'mp4'); ready(); }, { once: true });
+      mp4.addEventListener('playing', function () { hero.classList.add('playing', 'mp4'); });
+      load(0);
+      setTimeout(ready, 20000);
+    }
     function size() {
       var f = $('iframe', hero) || box, w = hero.clientWidth, h = hero.clientHeight, W, H;
       if (w / h > ratio) { W = w; H = w / ratio; } else { H = h; W = h * ratio; }
       f.style.width = Math.ceil(W * 1.12) + 'px'; f.style.height = Math.ceil(H * 1.12) + 'px';   // 12% extra: oculta los bordes de YouTube
     }
     size(); addEventListener('resize', size);
-    if (location.protocol === 'file:') { fail(); return; }   // YouTube no reproduce desde un archivo abierto en la compu: va la foto
+    if (location.protocol === 'file:') { fail('archivo local'); return; }   // YouTube no reproduce desde un archivo abierto en la compu
     function noCC() {
       try { player.unloadModule('captions'); } catch (e) { }
       try { player.unloadModule('cc'); } catch (e) { }
@@ -1266,10 +1290,10 @@ body.mopen .mov a{opacity:1;transform:none}
           onReady: function (e) { e.target.mute(); noCC(); try { e.target.setPlaybackQuality('highres'); } catch (_) { } e.target.playVideo(); size(); },
           onApiChange: noCC,
           onStateChange: function (e) {
-            if (e.data === 1) { noCC(); waitHD(); }
+            if (e.data === 1) { started = true; noCC(); waitHD(); }
             if (e.data === 0) { e.target.seekTo(0, true); e.target.playVideo(); }
           },
-          onError: fail
+          onError: function (e) { fail('error ' + e.data); }
         }
       });
       (window.__ytPlayers = window.__ytPlayers || []).push(player);
@@ -1281,21 +1305,22 @@ body.mopen .mov a{opacity:1;transform:none}
         window.__ytLoading = true;
         var prev = window.onYouTubeIframeAPIReady;
         window.onYouTubeIframeAPIReady = function () { if (prev) prev(); (window.__ytQueue || []).forEach(function (f) { f(); }); };
-        var sc = document.createElement('script'); sc.src = 'https://www.youtube.com/iframe_api'; sc.async = true; sc.onerror = fail; document.head.appendChild(sc);
+        var sc = document.createElement('script'); sc.src = 'https://www.youtube.com/iframe_api'; sc.async = true; sc.onerror = function () { fail('no cargó la API'); }; document.head.appendChild(sc);
       }
     }
-    setTimeout(function () { if (!done) fail(); }, 30000);   // resguardo si YouTube no responde
+    var started = false;
+    setTimeout(function () { if (!started) fail('no arrancó en 8 s'); }, 8000);   // si YouTube no arranca, va el MP4
     var btn = $('.js-mute', hero);
     if (btn) btn.addEventListener('click', function () {
-      if (!player || !player.isMuted) return;
-      var on = player.isMuted();
-      if (on) { player.unMute(); player.setVolume(100); player.playVideo(); } else player.mute();
+      var on;
+      if (usingMp4) { on = mp4.muted; mp4.muted = !on; if (on) mp4.play().catch(function () { }); }
+      else { if (!player || !player.isMuted) return; on = player.isMuted(); if (on) { player.unMute(); player.setVolume(100); player.playVideo(); } else player.mute(); }
       hero.classList.toggle('sound', on);
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
       btn.setAttribute('aria-label', on ? 'Silenciar el video' : 'Activar el sonido del video');
     });
     new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (!player || !player.playVideo) return; try { if (e.isIntersecting) player.playVideo(); else player.pauseVideo(); } catch (_) { } });
+      es.forEach(function (e) { if (usingMp4) { if (e.isIntersecting) mp4.play().catch(function () { }); else mp4.pause(); return; } if (!player || !player.playVideo) return; try { if (e.isIntersecting) player.playVideo(); else player.pauseVideo(); } catch (_) { } });
     }, { threshold: 0.2 }).observe(hero);
   });
 

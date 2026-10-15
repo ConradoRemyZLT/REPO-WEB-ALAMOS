@@ -827,3 +827,7 @@ body.mopen .mov a{opacity:1;transform:none}
 #pre{background:var(--verde)}
 #pre .pbar{background:rgba(255,255,255,.3)}
 #pre .pbar i{background:#fff}
+.vhero video.yt-mp4{opacity:0;transition:opacity 1s var(--ease-out)}
+.vhero.mp4 video.yt-mp4{opacity:1}
+.vhero.yt-fail .yt-bg{display:none}
+.vhero.yt-fail .vhero-ui{display:flex}
