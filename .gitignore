@@ -1,0 +1,10 @@
+_cache/
+_site/
+_trabajo/
+__pycache__/
+desktop.ini
+Thumbs.db
+~$*
+
+# tipografía con licencia: no se publica el archivo suelto (va embebida y recortada en los HTML)
+fuentes/

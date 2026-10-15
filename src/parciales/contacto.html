@@ -1,0 +1,76 @@
+<section id="contacto" class="sec dark contact motif">
+  <div class="contact-bg"></div>
+  <div class="wrap">
+    <div class="eyebrow" data-reveal="up"><span class="l-es">Contacto</span><span class="l-en">Contact</span></div>
+    <h2 class="contact-big" data-reveal="up" style="--d:.06s"><span class="l-es">Hablemos de Álamos.</span><span class="l-en">Let's talk about Álamos.</span></h2>
+    <div class="cgrid">
+      <div class="ccol">
+        <div class="clist">
+          <a class="citem" href="https://wa.me/{{T:wa_num}}" target="_blank" rel="noopener" data-reveal="up" style="--d:.06s"><span class="cico"><i class="wa-ico" style="--m:url(@/iconos/contacto/whatsapp.png?w=96)"></i></span><span>{{T:wa_txt}}<small>WhatsApp</small></span></a>
+          <a class="citem" href="mailto:{{T:mail}}" data-reveal="up" style="--d:.12s"><span class="cico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3.5 5.5h17v13h-17z"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg></span><span>{{T:mail}}<small>Email</small></span></a>
+          <a class="citem" href="https://www.google.com/maps/search/?api=1&query=-38.3529394,-68.8171664" target="_blank" rel="noopener" data-reveal="up" style="--d:.18s"><span class="cico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span><span>{{T:dir}}<small>{{T:dir2}}</small></span></a>
+        </div>
+        <div class="cbro" data-reveal="up" style="--d:.2s">
+          <a href="{{ROOT}}brochures/alamos-inversores.pdf" download><span><span class="l-es">Brochure general · Inversores</span><span class="l-en">General brochure · Investors</span><small>PDF</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></a>
+          <a href="{{ROOT}}brochures/alamos-empresas.pdf" download><span><span class="l-es">Brochure para empresas</span><span class="l-en">Brochure for companies</span><small>PDF</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></a>
+        </div>
+      </div>
+      <form class="cform" novalidate data-reveal="up" style="--d:.1s" data-default="{{FORM}}" data-tipo="inversor">
+        <div class="ftabs" role="tablist">
+          <button type="button" class="ftab on" data-pane="inversor" role="tab" aria-selected="true"><span class="l-es">Soy inversor</span><span class="l-en">I'm an investor</span></button>
+          <button type="button" class="ftab" data-pane="empresa" role="tab" aria-selected="false"><span class="l-es">Soy empresa</span><span class="l-en">I'm a company</span></button>
+        </div>
+        <div class="fpane" data-pane="inversor">
+          <div class="frow">
+            <div class="fld"><label for="i-nombre"><span class="l-es">Nombre</span><span class="l-en">First name</span><i>*</i></label><input id="i-nombre" required autocomplete="given-name"><span class="err"><span class="l-es">Completá este campo</span><span class="l-en">Please fill in this field</span></span></div>
+            <div class="fld"><label for="i-apellido"><span class="l-es">Apellido</span><span class="l-en">Last name</span><i>*</i></label><input id="i-apellido" required autocomplete="family-name"><span class="err"><span class="l-es">Completá este campo</span><span class="l-en">Please fill in this field</span></span></div>
+            <div class="fld"><label for="i-mail">Email<i>*</i></label><input id="i-mail" type="email" required autocomplete="email" placeholder="nombre@correo.com" data-ph-es="nombre@correo.com" data-ph-en="name@email.com"><span class="err"><span class="l-es">Ingresá un email válido</span><span class="l-en">Enter a valid email</span></span></div>
+            <div class="fld"><label for="i-tel"><span class="l-es">Teléfono</span><span class="l-en">Phone</span><i>*</i></label><input id="i-tel" type="tel" required autocomplete="tel" placeholder="+54 9 ..."><span class="err"><span class="l-es">Completá este campo</span><span class="l-en">Please fill in this field</span></span></div>
+            <div class="fld"><label for="i-ciudad"><span class="l-es">Ciudad</span><span class="l-en">City</span></label><input id="i-ciudad" autocomplete="address-level2"></div>
+            <div class="fld"><label for="i-interes"><span class="l-es">Me interesa</span><span class="l-en">I'm interested in</span></label><select id="i-interes"><option data-en="Units at Álamos (monthly income)">Unidades en Álamos (renta mensual)</option><option data-en="Álamos Hotel">Álamos Hotel</option><option data-en="Álamos Business Center">Álamos Business Center</option><option data-en="General information">Información general</option></select></div>
+            <div class="fld fld-full"><label for="i-msg"><span class="l-es">Mensaje</span><span class="l-en">Message</span></label><textarea id="i-msg" rows="4" placeholder="Contanos qué te interesa…" data-ph-es="Contanos qué te interesa…" data-ph-en="Tell us what you're interested in…"></textarea></div>
+          </div>
+        </div>
+        <div class="fpane" data-pane="empresa" hidden>
+          <div class="frow">
+            <div class="fld"><label for="e-empresa"><span class="l-es">Empresa</span><span class="l-en">Company</span><i>*</i></label><input id="e-empresa" required autocomplete="organization"><span class="err"><span class="l-es">Completá este campo</span><span class="l-en">Please fill in this field</span></span></div>
+            <div class="fld"><label for="e-nombre"><span class="l-es">Nombre y apellido</span><span class="l-en">Full name</span><i>*</i></label><input id="e-nombre" required autocomplete="name"><span class="err"><span class="l-es">Completá este campo</span><span class="l-en">Please fill in this field</span></span></div>
+            <div class="fld"><label for="e-cargo"><span class="l-es">Cargo</span><span class="l-en">Position</span></label><input id="e-cargo" autocomplete="organization-title"></div>
+            <div class="fld"><label for="e-mail">Email<i>*</i></label><input id="e-mail" type="email" required autocomplete="email" placeholder="nombre@empresa.com" data-ph-es="nombre@empresa.com" data-ph-en="name@company.com"><span class="err"><span class="l-es">Ingresá un email válido</span><span class="l-en">Enter a valid email</span></span></div>
+            <div class="fld"><label for="e-tel"><span class="l-es">Teléfono</span><span class="l-en">Phone</span><i>*</i></label><input id="e-tel" type="tel" required autocomplete="tel" placeholder="+54 9 ..."><span class="err"><span class="l-es">Completá este campo</span><span class="l-en">Please fill in this field</span></span></div>
+            <div class="fld"><label for="e-personas"><span class="l-es">Personas a alojar</span><span class="l-en">People to house</span></label><select id="e-personas"><option>1 – 4</option><option>5 – 12</option><option>13 – 30</option><option data-en="More than 30">Más de 30</option></select></div>
+            <div class="fld"><label for="e-ingreso"><span class="l-es">Ingreso estimado</span><span class="l-en">Estimated move-in</span></label><input id="e-ingreso" placeholder="Ej.: noviembre 2026" data-ph-es="Ej.: noviembre 2026" data-ph-en="E.g. November 2026"></div>
+            <div class="fld"><label for="e-plazo"><span class="l-es">Plazo estimado</span><span class="l-en">Estimated stay</span></label><select id="e-plazo"><option data-en="Up to 3 months">Hasta 3 meses</option><option data-en="3 to 6 months">3 a 6 meses</option><option data-en="6 to 12 months">6 a 12 meses</option><option data-en="More than 12 months">Más de 12 meses</option></select></div>
+            <div class="fld fld-full"><label for="e-msg"><span class="l-es">Mensaje</span><span class="l-en">Message</span></label><textarea id="e-msg" rows="4" placeholder="Contanos sobre tu operación en Vaca Muerta…" data-ph-es="Contanos sobre tu operación en Vaca Muerta…" data-ph-en="Tell us about your operation in Vaca Muerta…"></textarea></div>
+          </div>
+        </div>
+        <div class="fsends">
+          <button type="button" class="fsend wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm4.52 11.99c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07s.88 2.4 1 2.57c.12.17 1.73 2.64 4.2 3.7 2.47 1.06 2.47.71 2.92.67.45-.04 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg><span class="l-es">Enviar por WhatsApp</span><span class="l-en">Send via WhatsApp</span></button>
+          <button type="button" class="fsend ml"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3.5 5.5h17v13h-17z"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg><span class="l-es">Enviar por mail</span><span class="l-en">Send via email</span></button>
+        </div>
+        <p class="fnote"><span class="l-es">El mensaje se arma con tus datos y se abre listo para enviar en WhatsApp o en tu correo.</span><span class="l-en">Your message is put together with your details and opens ready to send in WhatsApp or your email app.</span></p>
+      </form>
+    </div>
+  </div>
+  <footer class="foot">
+    <nav class="foot-nav" aria-label="Mapa del sitio">
+      <div class="fn-col"><div class="fn-h">Álamos</div><a href="{{ROOT}}#inicio"><span class="l-es">Inicio</span><span class="l-en">Home</span></a><a href="{{ROOT}}#etapas"><span class="l-es">Etapas</span><span class="l-en">Stages</span></a><a href="{{ROOT}}#ubicacion"><span class="l-es">Ubicación</span><span class="l-en">Location</span></a><a href="{{ROOT}}#proximas"><span class="l-es">Próximas etapas</span><span class="l-en">Next stages</span></a></div>
+      <div class="fn-col"><div class="fn-h"><span class="l-es">Inversores</span><span class="l-en">Investors</span></div><a href="{{ROOT}}inversores/"><span class="l-es">Renta administrada</span><span class="l-en">Managed income</span></a><a href="{{ROOT}}inversores/#preguntas"><span class="l-es">Preguntas frecuentes</span><span class="l-en">FAQ</span></a><a href="{{ROOT}}brochures/alamos-inversores.pdf" download><span class="l-es">Brochure general</span><span class="l-en">General brochure</span></a></div>
+      <div class="fn-col"><div class="fn-h"><span class="l-es">Empresas</span><span class="l-en">Companies</span></div><a href="{{ROOT}}empresas/"><span class="l-es">Alojamiento corporativo</span><span class="l-en">Corporate housing</span></a><a href="{{ROOT}}empresas/#unidades"><span class="l-es">Las unidades</span><span class="l-en">The units</span></a><a href="{{ROOT}}brochures/alamos-empresas.pdf" download><span class="l-es">Brochure empresas</span><span class="l-en">Companies brochure</span></a></div>
+      <div class="fn-col"><div class="fn-h">Club</div><a href="{{ROOT}}club/">Álamos Club</a><a href="{{ROOT}}club/#amenities">Amenities</a><a href="{{ROOT}}brochures/alamos-club.pdf" download><span class="l-es">Brochure del Club</span><span class="l-en">Club brochure</span></a></div>
+    </nav>
+    <div class="foot-row">
+      <div class="foot-brand"><img class="foot-logo" src="@/logos/marca/alamos-de-anelo.png?w=300" alt="Álamos de Añelo" loading="lazy"><span class="foot-zlt"><span class="l-es">Desarrolla</span><span class="l-en">Developed by</span><img src="@/logos/marca/zlt-isologo.png?w=120" alt="ZLT" loading="lazy"></span></div>
+      <div class="socials">
+        <a class="sicon" href="{{T:zlt}}" target="_blank" rel="noopener" aria-label="ZLT"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg></a>
+        <a class="sicon" href="{{T:ig}}" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".9" fill="currentColor"/></svg></a>
+        <a class="sicon" href="{{T:li}}" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.1c0-1.22-.02-2.78-1.7-2.78-1.7 0-1.96 1.33-1.96 2.7V21h-4z"/></svg></a>
+        <a class="sicon" href="{{T:yt}}" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.3 5 12 5 12 5s-6.3 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.7 19 12 19 12 19s6.3 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></svg></a>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <p class="foot-disc"><span class="l-es">La información, imágenes, renders, planos y equipamiento presentados son ilustrativos y no constituyen oferta contractual. Las rentabilidades mencionadas son históricas o estimadas y no garantizan resultados futuros. Las especificaciones pueden modificarse sin previo aviso.</span><span class="l-en">The information, images, renderings, plans and equipment shown are illustrative and do not constitute a contractual offer. Any returns mentioned are historical or estimated and do not guarantee future results. Specifications may change without notice.</span></p>
+      <span class="foot-copy">© {{T:anio}} Álamos de Añelo · ZLT · <span class="l-es">Negocios Rentables</span><span class="l-en">Profitable Business</span></span>
+    </div>
+  </footer>
+</section>

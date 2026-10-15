@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="@/src/css/maplibre-gl.css">
+<section id="ubicacion" class="sec dark motif">
+  <div class="wrap mapbox">
+    <div>
+      <div class="sec-head">
+        <div class="eyebrow" data-reveal="up"><span class="l-es">Ubicación estratégica</span><span class="l-en">Strategic location</span></div>
+        <h2 class="big" data-reveal="up" style="--d:.05s"><span class="l-es">En Añelo, <span class="acc">el corazón de Vaca Muerta</span></span><span class="l-en">In Añelo, <span class="acc">the heart of Vaca Muerta</span></span></h2>
+        <p class="prose" data-reveal="up" style="--d:.1s"><span class="l-es">Álamos está sobre la Ruta Provincial 17, km 158,15, en Añelo, Neuquén: la localidad desde donde opera la industria del petróleo y el gas no convencional. Las empresas alojan a sus equipos a minutos de la ciudad y de las vías de acceso a los yacimientos.</span><span class="l-en">Álamos sits on Provincial Route 17, km 158.15, in Añelo, Neuquén — the town from which the unconventional oil and gas industry operates. Companies house their teams minutes from town and from the roads to the oil fields.</span></p>
+      </div>
+      <ul class="blist loc-list" data-reveal="up" style="--d:.14s">
+        <li><span><span class="l-es">Lote de 2 hectáreas</span><span class="l-en">2-hectare site</span></span><span><span class="l-es">Barrio cerrado</span><span class="l-en">Gated community</span></span></li>
+        <li><span><span class="l-es">Ruta Provincial 17</span><span class="l-en">Provincial Route 17</span></span><span>km 158,15</span></li>
+        <li><span>Álamos Club</span><span><span class="l-es">Lindero al barrio</span><span class="l-en">Next to the complex</span></span></li>
+        <li><span><span class="l-es">Parque Industrial Vaca Muerta</span><span class="l-en">Vaca Muerta Industrial Park</span></span><span><span class="l-es">También desarrollado por ZLT</span><span class="l-en">Also developed by ZLT</span></span></li>
+      </ul>
+      <div class="loc-cta" data-reveal="up" style="--d:.18s"><a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&amp;destination=-38.3529394,-68.8171664" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg><span><span class="l-es">Cómo llegar</span><span class="l-en">Get directions</span></span></a></div>
+    </div>
+    <div class="amap" id="amap" data-reveal="fade" role="region" aria-label="Mapa de ubicación"></div>
+  </div>
+</section>
+
+<script src="@/src/js/maplibre-gl.js"></script>

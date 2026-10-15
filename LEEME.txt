@@ -1,0 +1,73 @@
+WEB ÁLAMOS DE AÑELO
+Repositorio · octubre 2026
+
+Nueva web de Álamos (reemplazo de alamosdeañelo.com, hoy en Wix). Sigue la
+estructura y el sistema de movimiento de ZLT-WEB-V2, con la identidad de Álamos:
+paleta del manual de marca (verde #93A9A1, gris medio #938782, gris claro
+#BFBBBC, crema #EEE9E1, gris oscuro #393433), isologo, triángulos de la marca e
+iconografía propia. Álamos Club usa su verde (#0F3526) y su iconografía.
+
+LAS CUATRO PÁGINAS
+
+  /             Inicio        video del banner, las dos propuestas, etapas en
+                              desplegables, servicios, galería, Club, mapa,
+                              próximas etapas, videos, empresas alojadas
+  /inversores/  Inversores    renta administrada, pool de rentas, Vaca Muerta,
+                              EDGE, preguntas frecuentes, formulario de inversor
+  /empresas/    Empresas      unidades e interiores, equipamiento, infraestructura,
+                              servicios, Club, ubicación, formulario de empresa
+  /club/        Álamos Club   video del banner, amenities, fotos, renders
+
+Todas en español e inglés (selector de idioma arriba a la derecha).
+
+CÓMO ESTÁ ORDENADO
+
+  html/        LOS HTML QUE SE PUBLICAN. Cada uno es un solo archivo con todo
+               adentro (fotos, logos, video, código). Se generan, no se editan.
+  src/         LA FUENTE: acá se edita.
+    paginas/     una plantilla por página
+    parciales/   bloques compartidos (menú, contacto y pie, servicios, mapa,
+                 próximas etapas, empresas, Club)
+    css/ js/     estilos e interacción (MapLibre embebido para el mapa)
+    datos/       sitio.json: WhatsApp, mail, dirección, IDs de YouTube, redes
+  fotos/       fotos en calidad completa (2400 px), por tema
+  logos/       marca, acompañan, inquilinos (empresas alojadas)
+  iconos/      servicios, club y web (favicon, ícono de iOS/Android, imagen
+               para compartir)
+  videos/      los videos de los banners (Home, Inversores, Empresas y Club):
+               horizontales (16:9) y verticales para celular (-m.mp4, 9:16,
+               sacados de "02-ZLT ALAMOS 9-16.mp4")
+  fuentes/     Gilroy (no se sube a GitHub: build.py la embebe recortada)
+  brochures/   los PDF que se descargan desde la web
+  links/       planillas con videos, contacto y coordenadas
+  build.py     arma los HTML de html/ a partir de src/
+
+CÓMO SE EDITA Y SE PUBLICA
+
+  1. Cambiar el texto o la foto en src/ (o reemplazar el archivo en fotos/).
+  2. Correr:  python build.py           (necesita Python 3 y Pillow)
+     Para mirarlo antes:  python build.py --serve   → http://localhost:8000
+  3. Subir los cambios a GitHub: el workflow de .github/ publica html/ y
+     brochures/ en GitHub Pages.
+
+  En el HTML, las rutas que empiezan con @/ son archivos del repo que build.py
+  embebe: las fotos pasan a WebP (el ?w=1160 indica el ancho máximo).
+
+PARA TENER EN CUENTA
+
+  · Las páginas están en noindex: Google no las muestra hasta la mudanza.
+    Cuando reemplace a la web actual, sacar las dos líneas "robots" de
+    src/parciales/head-comun.html y volver a armar.
+  · Los formularios no tienen servidor: arman el mensaje y lo abren listo para
+    enviar por WhatsApp o por mail (número y casilla en src/datos/sitio.json).
+  · Tipografía: Gilroy embebida en cada HTML (Light a ExtraBold, recortada a
+    caracteres latinos), así se ve igual en cualquier equipo. build.py la toma
+    de fuentes/. La carpeta no se sube a GitHub para no distribuir los archivos
+    sueltos; uso web sujeto a la licencia de Gilroy de ZLT.
+  · Mapa: MapLibre + OpenFreeMap (datos de OpenStreetMap). Uso comercial
+    gratuito, sin clave ni límite de visitas; exige mostrar la atribución
+    (ya aparece en el mapa). Para vista satelital hace falta una clave
+    (Esri o Google Maps Embed).
+  · Marca de agua: la "M" del logotipo, maciza y grande, un tono apenas
+    distinto del fondo (clase .motif). En el Club, el isotipo del Club.
+  · _cache/, _site/, _trabajo/ y fuentes/ no se suben (están en .gitignore).

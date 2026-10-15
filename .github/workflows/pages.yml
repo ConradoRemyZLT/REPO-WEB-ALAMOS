@@ -1,0 +1,44 @@
+# Publica la web en GitHub Pages en cada push a main.
+# Copia los HTML ya armados (html/) a la estructura pública:
+#   /  /inversores/  /empresas/  /club/  /brochures/
+name: Publicar en GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Armar el sitio
+        run: |
+          set -euo pipefail
+          mkdir -p _site/inversores _site/empresas _site/club _site/brochures
+          cp html/ALAMOS-WEB-home.html       _site/index.html
+          cp html/ALAMOS-WEB-inversores.html _site/inversores/index.html
+          cp html/ALAMOS-WEB-empresas.html   _site/empresas/index.html
+          cp html/ALAMOS-WEB-club.html       _site/club/index.html
+          cp brochures/*.pdf                 _site/brochures/
+          cp iconos/web/*                    _site/
+          cp html/robots.txt html/sitemap.xml _site/ 2>/dev/null || true
+          touch _site/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.d.outputs.page_url }}
+    steps:
+      - id: d
+        uses: actions/deploy-pages@v4
