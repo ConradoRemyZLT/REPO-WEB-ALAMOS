@@ -783,15 +783,15 @@ body.mopen .mov a{opacity:1;transform:none}
 }
 /* ═══════ MASTERPLAN INTERACTIVO ═══════ */
 .mplan{margin-top:clamp(36px,5vw,64px);display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:clamp(16px,2.4vw,32px);align-items:stretch}
-.mp-stage{position:relative;border-radius:var(--r2);background:#F6F3EE;border:1px solid var(--line-l);box-shadow:var(--shadow-m);padding:clamp(10px,1.6vw,22px);overflow:hidden}
+.mp-stage{position:relative;align-self:center}
 .mp-stage img{width:100%;height:auto;display:block}
-.mp-svg{position:absolute;inset:clamp(10px,1.6vw,22px);width:calc(100% - 2*clamp(10px,1.6vw,22px));height:calc(100% - 2*clamp(10px,1.6vw,22px))}
+.mp-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .mp-a{cursor:pointer;outline:none}
 .mp-a polygon{fill:rgba(92,120,110,0);stroke:rgba(92,120,110,0);stroke-width:5;vector-effect:non-scaling-stroke;transition:fill .35s var(--ease-out),stroke .35s var(--ease-out),opacity .35s}
 .mp-a:hover polygon,.mp-a:focus-visible polygon,.mp-a.on polygon{fill:rgba(92,120,110,.34);stroke:#5C786E;stroke-width:3}
 .mp-a.club:hover polygon,.mp-a.club:focus-visible polygon,.mp-a.club.on polygon{fill:rgba(15,53,38,.28);stroke:#0F3526}
 .mp-a.prox:hover polygon,.mp-a.prox:focus-visible polygon,.mp-a.prox.on polygon{fill:rgba(62,134,172,.22);stroke:#3E86AC;stroke-dasharray:10 7}
-.mp-svg.active .mp-a:not(.on):not(:hover) polygon{fill:rgba(246,243,238,.42)}
+.mp-svg.active .mp-a:not(.on):not(:hover) polygon{fill:rgba(234,228,218,.5)}
 .mp-a.on polygon{animation:mpPulse 2.4s var(--ease-io) infinite}
 @keyframes mpPulse{0%,100%{stroke-opacity:1}50%{stroke-opacity:.45}}
 .mp-panel{display:flex;flex-direction:column;gap:16px}
