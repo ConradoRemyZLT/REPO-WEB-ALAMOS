@@ -20,8 +20,18 @@
     var imgs = $$('img'), vids = $$('[data-video],[data-yt]');
     var total = imgs.length + vids.length + 1, n = 0, ended = false;
     function step() { n++; if (bar) bar.style.width = Math.min(100, n / total * 100) + '%'; if (n >= total) finish(); }
+    // Con login (gate.js): la pantalla de carga se muestra recién al ingresar y se queda
+    // hasta que todo esté cargado, para que no termine escondida detrás del login.
+    var root = document.documentElement;
+    function locked() { var ok = false; try { ok = sessionStorage.getItem('zlt_gate_ok') === '1'; } catch (e) { } return !ok && (!!document.getElementById('zgate') || root.style.visibility === 'hidden'); }
+    var gated = locked(), unlockedAt = gated ? 0 : 1, waiting = false;
+    if (!unlockedAt) var iv = setInterval(function () { if (!locked()) { clearInterval(iv); unlockedAt = Date.now(); setTimeout(finish, 60000); } }, 150);
     function finish() {
-      if (ended) return; ended = true; if (bar) bar.style.width = '100%';
+      if (ended) return;
+      if (!unlockedAt) { if (n >= total && !waiting) { waiting = true; var w = setInterval(function () { if (unlockedAt) { clearInterval(w); finish(); } }, 150); } return; }
+      var min = gated ? unlockedAt + 1400 - Date.now() : 0;      // recién ingresado: se ve el logo un instante y arranca todo desde cero
+      if (min > 0) { setTimeout(finish, min); return; }
+      ended = true; if (bar) bar.style.width = '100%';
       // el video arranca desde el primer cuadro cuando se levanta la pantalla
       $$('[data-video] video, .vhero video, .phero video').forEach(function (v) { try { v.currentTime = 0; } catch (e) { } });
       (window.__ytPlayers || []).forEach(function (pl) { try { pl.seekTo(0, true); pl.playVideo(); } catch (e) { } });
@@ -35,7 +45,7 @@
       if (i.complete) dec(); else { i.addEventListener('load', dec); i.addEventListener('error', fin); }
     });
     (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(step, step);
-    setTimeout(finish, 60000);             // resguardo ante un archivo dañado
+    if (unlockedAt) setTimeout(finish, 60000);   // resguardo ante un archivo dañado (con login, corre desde el ingreso)
   })();
 
   /* ── reveals ── */

@@ -831,3 +831,7 @@ body.mopen .mov a{opacity:1;transform:none}
 .vhero.mp4 video.yt-mp4{opacity:1}
 .vhero.yt-fail .yt-bg{display:none}
 .vhero.yt-fail .vhero-ui{display:flex}
+
+/* pantalla de carga: isologotipo de Álamos que "respira" mientras carga el sitio */
+#pre img{animation:preIn 1.1s var(--ease-out) both,preBreath 2.6s 1.1s ease-in-out infinite}
+@keyframes preBreath{0%,100%{opacity:.96;transform:scale(1)}50%{opacity:.62;transform:scale(.975)}}
